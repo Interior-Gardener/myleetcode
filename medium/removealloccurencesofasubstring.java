@@ -38,21 +38,41 @@
 // s​​​​​​ and part consists of lowercase English letters.
 
 class Solution {
-    public static String removeOccurrences(String s, String part) {
-        if(part.length() == 0 || part.length() > s.length() || s.length() == 0) return s;
+    // public static String removeOccurrences(String s, String part) {
+    // if(part.length() == 0 || part.length() > s.length() || s.length() == 0)
+    // return s;
 
-        for (int i = 0; i < s.length(); i++) {
-            int j = i + part.length() - 1;
-            if (j < s.length()) {
-                if (s.substring(i, j + 1).equals(part)) {
-                    s = s.substring(0, i) + s.substring(j + 1, s.length());
-                    System.out.println(s + " >s");
-                    i = -1;
+    // for (int i = 0; i < s.length(); i++) {
+    // int j = i + part.length() - 1;
+    // if (j < s.length()) {
+    // if (s.substring(i, j + 1).equals(part)) {
+    // s = s.substring(0, i) + s.substring(j + 1, s.length());
+    // System.out.println(s + " >s");
+    // i = -1;
+    // }
+    // }
+
+    // }
+    // return s;
+    // }
+
+    class Solution {
+        public static String removeOccurrences(String s, String part) {
+            StringBuilder sb = new StringBuilder();
+            int partLen = part.length();
+
+            for (char c : s.toCharArray()) {
+                sb.append(c);
+
+                if (sb.length() >= partLen) {
+                    if (sb.substring(sb.length() - partLen).equals(part)) {
+                        sb.delete(sb.length() - partLen, sb.length());
+                    }
                 }
             }
 
+            return sb.toString();
         }
-        return s;
     }
 
     public static void main(String[] args) {
