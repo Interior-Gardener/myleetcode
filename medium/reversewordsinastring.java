@@ -39,30 +39,39 @@
 // Follow-up: If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
 import java.util.*;
 class Solution {
-    public static String reverseWords(String s) {
-        StringBuilder result = new StringBuilder();
+    // public static String reverseWords(String s) {
+    //     StringBuilder result = new StringBuilder();
+    //     StringBuilder temp = new StringBuilder();
+    //     s.trim();
+    //     int i = s.length() -1;
+    //     while(i>=0){
+    //         if(s.charAt(i) == ' ') {
+    //             result.append(temp.reverse() + " ");
+    //             temp.setLength(0);
+    //             i--;
+    //             continue;
+    //         }
+    //         temp.append(s.charAt(i));
+    //         i--;
+    //     }
+    //     result.append(temp.reverse());
+    //     System.out.println(result);
+    //     for(int j = 0 ; j  < result.length() ; j++) {
+    //         if(result.charAt(j) == ' ' && j+1 <result.length() && result.charAt(j+1) == ' ') {
+    //             result.deleteCharAt(j);
+    //             j--;
+    //         } 
+    //     }
+    //     return result.toString().trim();
+    // }
+
+    public String reverseWords(String s) {
+        StringBuilder result  =  new StringBuilder();
         StringBuilder temp = new StringBuilder();
-        s.trim();
-        int i = s.length() -1;
-        while(i>=0){
-            if(s.charAt(i) == ' ') {
-                result.append(temp.reverse() + " ");
-                temp.setLength(0);
-                i--;
-                continue;
-            }
-            temp.append(s.charAt(i));
-            i--;
+        int spacecount = 0;
+        for (int i = s.length() - 1 ; i >= 0 ; i--) {
+            if()
         }
-        result.append(temp.reverse());
-        System.out.println(result);
-        for(int j = 0 ; j  < result.length() ; j++) {
-            if(result.charAt(j) == ' ' && j+1 <result.length() && result.charAt(j+1) == ' ') {
-                result.deleteCharAt(j);
-                j--;
-            } 
-        }
-        return result.toString().trim();
     }
 
     public static void main(String[] args) {
