@@ -66,52 +66,75 @@ class Solution {
     // return count;
     // }
 
-    public static int subarraySum(int[] nums, int k) {
-        int count = 0;
-        int[] prefix = new int[nums.length];
-        int temp = nums[0];
-        prefix[0] = temp;
-        for (int i = 1; i < nums.length; i++) {
-            temp += nums[i];
-            prefix[i] = temp;
-        }
-        if(k == 0) {
+    // public static int subarraySum(int[] nums, int k) {
+    // int count = 0;
+    // HashSet<Integer> set = new HashSet<>();
+    // int[] prefix = new int[nums.length];
+    // int temp = nums[0];
+    // prefix[0] = temp;
+    // for (int i = 1; i < nums.length; i++) {
+    // temp += nums[i];
+    // prefix[i] = temp;
+    // }
 
+    // for (int i = 0; i < prefix.length; i++) {
+    // int complement = prefix[i] - k;
+    // if(prefix[i] == k) {
+    // count++;
+    // set.add(prefix[i]);
+    // }
+
+    // if(set.contains(complement) ) {
+    // count++;
+    // set.add(prefix[i]);
+    // }
+    // set.add(prefix[i]);
+    // }
+    // return count;
+    // }
+
+    public static int subarraySum(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+
+        int count = 0;
+
+        int[] prefix = new int[nums.length];
+        prefix[0] = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            prefix[i] = prefix[i - 1] + nums[i];
         }
 
         for (int i = 0; i < prefix.length; i++) {
-            if(prefix[i] == k) {
-                count++;
+            int complement = prefix[i] - k;
+
+            if (map.containsKey(complement)) {
+                count += map.get(complement);
             }
-            for (int j = i + 1; j < prefix.length; j++) {
-                // if (Math.max(prefix[i], prefix[j]) - Math.min(prefix[i], prefix[j]) == k) {
-                if (prefix[j] - prefix[i] == k) {
-                    count++;
-                    // System.out.println(prefix[i] + " < prefix [ i ]  prefix [ j ] > " + prefix[j]);
-                }
-                // if (Math.max(prefix[i], prefix[j]) - Math.min(prefix[i], prefix[j]) > k) {
-                // if (prefix[j] - prefix[i] > k) {
-                //     break;
-                // }
-            }
+
+            map.put(prefix[i], map.getOrDefault(prefix[i], 0) + 1);
         }
+
         return count;
     }
 
     public static void main(String[] args) {
         // int[] nums = { -1, 2, 5, -2, 4 };
-        // int k = 2;
         // prefix = {-1 , 1 , 6 , 4 , 8}
         // prefix = {-1 , 1 , 5 , 9 , 7}
+        // int k = 2;
         // int[] nums = {1,1,1};
-        //prefix = {1 , 2 , 3}
+        // prefix = {1 , 2 , 3}
         // int k = 2;
         // int[] nums = {0,0,0,0};
-        int[] nums = {1,0,-1};
+        // int[] nums = {1,0,-1};
+        // int[] nums = {1,-1,0,0,-1,1};
+        int[] nums = { 1, -1, 0 };
+        // prefix = {1,0,0}
         int k = 0;
         System.out.println(subarraySum(nums, k));
     }
-
 
     public static void printArray(int[] arr) {
         for (int num : arr) {
