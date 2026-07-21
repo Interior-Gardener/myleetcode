@@ -52,11 +52,11 @@ import java.util.*;
 class Solution {
     public static List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<>();
-        backtrack(n, k, result, new ArrayList<>());
+        backtrack(n, k, result, new ArrayList<>(), 1);
         return result;
     }
 
-    public static void backtrack(int n, int k, List<List<Integer>> result, ArrayList<Integer> temp) {
+    public static void backtrack(int n, int k, List<List<Integer>> result, ArrayList<Integer> temp, int start) {
 
         if (temp.size() == k) {
             ArrayList<Integer> temp1 = new ArrayList<>(temp);
@@ -64,13 +64,13 @@ class Solution {
             return;
         }
 
-        for (int i = 1; i <= n; i++) {
-            if (!temp.isEmpty()) {
-                if (i <= temp.getLast())
-                    continue;
-            }
+        for (int i = start; i <= n; i++) {
+            // if (!temp.isEmpty()) {
+            //     if (i <= temp.getLast())
+            //         continue;
+            // }
             temp.add(i);
-            backtrack(n, k, result, temp);
+            backtrack(n, k, result, temp,i+1);
             temp.removeLast();
         }
 
