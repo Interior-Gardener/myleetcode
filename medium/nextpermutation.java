@@ -33,46 +33,55 @@
 // 1 <= nums.length <= 100
 // 0 <= nums[i] <= 100
 import java.util.*;
+
 class Solution {
     public void nextPermutation(int[] nums) {
-        if(nums.length == 1) return;
-        if(nums.length == 2) {
+        if (nums.length == 1)
+            return;
+        if (nums.length == 2) {
             int temp = nums[0];
             nums[0] = nums[1];
             nums[1] = temp;
             return;
         }
-
         boolean desc = true;
-        for(int i = 1 ; i < nums.length ;i++) {
-            if(nums[i] > nums[i-1]) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] < nums[i + 1]) {
                 desc = false;
+                break;
             }
         }
-        if(desc) {
+        if (desc) {
             Arrays.sort(nums);
             return;
         }
-        // 1 2 5 4 3  -- 1 3 2 4 5
-        for(int i = 1 ; i < nums.length ;i++) {
-            if(nums[i-1] > nums[i]) {
-                int k = nums[i-1];
-                for(int j = i ; j < nums.length ;j++) {
-
-                }
+        int pivot = 0;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                pivot = i;
+                break;
             }
         }
-
-    }
-
-    public static void swap(int nums[],int a , int b) {
-
-    }
-
-    public static void printArr(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        int swap = -1;
+        for (int i = nums.length - 1; i > pivot; i--) {
+            if (nums[i] > nums[pivot]) {
+                swap = i;
+                break;
+            }
         }
-        System.out.println();
+        if (swap != -1)
+            swap(nums, pivot, swap);
+
+        for (int i = pivot + 1, j = nums.length - 1; i < j; i++, j--) {
+            swap(nums, i, j);
+        }
+
+    }
+
+    public static void swap(int nums[], int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+        return;
     }
 }
