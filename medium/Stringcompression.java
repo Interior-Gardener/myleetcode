@@ -204,58 +204,81 @@
 //     }
 // }
 
+// class Solution {
+//     public int compress(char[] chars) {
+//         if (chars.length == 1)
+//             return 1;
+//         int freq = 0;
+//         int i = 0;
+//         int j = 0;
+//         int n = chars.length;
+//         while (j < n) {
+//             if (chars[i] == chars[j]) {
+//                 freq++;
+//                 j++;
+//                 continue;
+//             } else if (chars[i] != chars[j]) {
+//                 if (freq > 1) {
+//                     for (char c : Integer.toString(freq).toCharArray()) {
+//                         chars[++i] = c;
+//                     }
+//                     freq = 0;
+//                     int temp = j;
+//                     int temp1 = i;
+//                     while (temp < chars.length) {
+//                         temp1++;
+//                         chars[temp1] = chars[temp];
+//                         temp++;
+//                     }
+//                     n -= (j - i - 1);
+//                     i++;
+//                     j = i - 1;
+//                     j++;
+//                 } else {
+//                     i++;
+//                     freq = 0;
+//                     continue;
+//                 }
+//             }
+//         }
+//         if (freq > 1) {
+//             for (char c : Integer.toString(freq).toCharArray()) {
+//                 chars[++i] = c;
+//             }
+//         }
+//         return i + 1;
+//     }
+// }
+
 class Solution {
     public int compress(char[] chars) {
-        if (chars.length == 1)
-            return 1;
-        int freq = 0;
-        int i = 0;
-        int j = 0;
         int n = chars.length;
-        while (j < n) {
-            if (chars[i] == chars[j]) {
-                freq++;
-                j++;
-                continue;
-            } else if (chars[i] != chars[j]) {
-                if (freq > 1) {
-                    for (char c : Integer.toString(freq).toCharArray()) {
-                        chars[++i] = c;
-                    }
-                    freq = 0;
-                    int temp = j;
-                    int temp1 = i;
-                    while (temp < chars.length) {
-                        temp1++;
-                        chars[temp1] = chars[temp];
-                        temp++;
-                    }
-                    n -= (j - i - 1);
-                    i++;
-                    j = i - 1;
-                    j++;
-                } else {
-                    i++;
-                    freq = 0;
-                    continue;
+        int read = 0;
+        int write = 0;
+
+        while (read < n) {
+            char current = chars[read];
+            int count = 0;
+
+            // Count consecutive occurrences
+            while (read < n && chars[read] == current) {
+                count++;
+                read++;
+            }
+
+            // Write the character
+            chars[write] = current;
+            write++;
+
+            // Write frequency only if > 1
+            if (count > 1) {
+                for (char digit : Integer.toString(count).toCharArray()) {
+                    chars[write] = digit;
+                    write++;
                 }
             }
         }
-        if (freq > 1) {
-            for (char c : Integer.toString(freq).toCharArray()) {
-                chars[++i] = c;
-            }
-        }
-        return i + 1;
-    }
 
-    public int getlen(int num) {
-        int len = 0;
-        int temp = num;
-        while (temp >= 1) {
-            len++;
-            temp /= 10;
-        }
-        return len;
+        return write;
     }
 }
