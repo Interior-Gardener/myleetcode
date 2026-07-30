@@ -37,33 +37,50 @@
 import java.util.*;
 
 class Solution {
+    // public List<List<String>> groupAnagrams(String[] strs) {
+    // List<List<String>> res = new ArrayList<>();
+    // ArrayList<String> newstrs = new ArrayList<>(Arrays.asList(strs));
+    // while (newstrs.size() != 0) {
+    // int[] freq1 = getfreq(newstrs.get(0));
+    // ArrayList<String> temp = new ArrayList<>();
+    // temp.add(newstrs.get(0));
+    // for (int i = 1; i < newstrs.size(); i++) {
+    // int[] freq2 = getfreq(newstrs.get(i));
+    // if (Arrays.equals(freq1, freq2)) {
+    // temp.add(newstrs.get(i));
+    // newstrs.remove(i);
+    // i--;
+    // }
+    // }
+    // res.add(temp);
+    // if (newstrs.size() != 0)
+    // newstrs.removeFirst();
+    // }
+    // return res;
+    // }
+
     public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, Integer> map = new HashMap<>();
         List<List<String>> res = new ArrayList<>();
-        ArrayList<String> newstrs = new ArrayList<>(Arrays.asList(strs));
-        while (newstrs.size() != 0) {
-            int[] freq1 = getfreq(newstrs.get(0));
-            ArrayList<String> temp = new ArrayList<>();
-            temp.add(newstrs.get(0));
-            for (int i = 1; i < newstrs.size(); i++) {
-                int[] freq2 = getfreq(newstrs.get(i));
-                if (Arrays.equals(freq1, freq2)) {
-                    temp.add(newstrs.get(i));
-                    newstrs.remove(i);
-                    i--;
-                }
+        for (int i = 0; i < strs.length; i++) {
+            int[] freq = getfreq(strs[i]);
+            String key = Arrays.toString(freq);
+            if (map.containsKey(key)) {
+                res.get(map.get(key)).add(strs[i]);
+            } else {
+                map.put(key, res.size());
+                List<String> temp = new ArrayList<>();
+                temp.add(strs[i]);
+                res.add(temp);
             }
-            res.add(temp);
-            if (newstrs.size() != 0)
-                newstrs.removeFirst();
         }
         return res;
     }
 
     public int[] getfreq(String str) {
-        int freq[] = new int[26];
-        for (int i = 0; i < str.length(); i++) {
+        int[] freq = new int[26];
+        for (int i = 0; i < str.length(); i++)
             freq[str.charAt(i) - 'a']++;
-        }
         return freq;
     }
 }
