@@ -5,8 +5,6 @@
 // Companies
 // Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
- 
-
 // Example 1:
 
 // Input: strs = ["eat","tea","tan","ate","nat","bat"]
@@ -30,8 +28,6 @@
 
 // Output: [["a"]]
 
- 
-
 // Constraints:
 
 // 1 <= strs.length <= 104
@@ -42,11 +38,32 @@ import java.util.*;
 
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>> list =  new ArrayList<>();
-        ArrayList<String> temp = new ArrayList<>();
-
-        for(String s : strs ) {
-            
+        List<List<String>> res = new ArrayList<>();
+        ArrayList<String> newstrs = new ArrayList<>(Arrays.asList(strs));
+        while (newstrs.size() != 0) {
+            int[] freq1 = getfreq(newstrs.get(0));
+            ArrayList<String> temp = new ArrayList<>();
+            temp.add(newstrs.get(0));
+            for (int i = 1; i < newstrs.size(); i++) {
+                int[] freq2 = getfreq(newstrs.get(i));
+                if (Arrays.equals(freq1, freq2)) {
+                    temp.add(newstrs.get(i));
+                    newstrs.remove(i);
+                    i--;
+                }
+            }
+            res.add(temp);
+            if (newstrs.size() != 0)
+                newstrs.removeFirst();
         }
+        return res;
+    }
+
+    public int[] getfreq(String str) {
+        int freq[] = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            freq[str.charAt(i) - 'a']++;
+        }
+        return freq;
     }
 }
