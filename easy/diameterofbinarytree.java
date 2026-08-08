@@ -48,26 +48,42 @@
  *     }
  * }
  */
+// class Solution {
+//     public int diameterOfBinaryTree(TreeNode root) {
+//         if (root == null)
+//             return 0;
+
+//         int left = height(root.left);
+//         int right = height(root.right);
+
+//         int current = left + right;
+
+//         int leftDiameter = diameterOfBinaryTree(root.left);
+//         int rightDiameter = diameterOfBinaryTree(root.right);
+
+//         return Math.max(current, Math.max(leftDiameter, rightDiameter));
+//     }
+
+//     public int height(TreeNode root) {
+//         if (root == null)
+//             return 0;
+
+//         return 1 + Math.max(height(root.left), height(root.right));
+//     }
+// }
+
 class Solution {
+    int diameter = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null)
-            return 0;
-
-        int left = height(root.left);
-        int right = height(root.right);
-
-        int current = left + right;
-
-        int leftDiameter = diameterOfBinaryTree(root.left);
-        int rightDiameter = diameterOfBinaryTree(root.right);
-
-        return Math.max(current, Math.max(leftDiameter, rightDiameter));
+        height(root);
+        return diameter;
     }
-
-    public int height(TreeNode root) {
-        if (root == null)
+    private int height(TreeNode node) {
+        if (node == null)
             return 0;
-
-        return 1 + Math.max(height(root.left), height(root.right));
+        int left = height(node.left);
+        int right = height(node.right);
+        diameter = Math.max(diameter, left + right);
+        return 1 + Math.max(left, right);
     }
 }
