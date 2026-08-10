@@ -41,6 +41,141 @@
 // 1 <= m, n <= 10
 // grid[i][j] is 0, 1, or 2.
 
+// class Solution {
+//     public int orangesRotting(int[][] grid) {
+//         if (all4zero(grid))
+//             return -1;
+//         if (all0(grid))
+//             return 0;
+//         if (!contains2(grid))
+//             return -1;
+//         int[][] prev = new int[grid.length][grid[0].length];
+//         for (int i = 0; i < grid.length; i++) {
+//             for (int j = 0; j < grid[0].length; j++) {
+//                 prev[i][j] = grid[i][j];
+//             }
+//         }
+
+//         int count = 0;
+//         count = helper(grid, prev, 0);
+//         return count;
+//     }
+
+//     public int helper(int[][] grid, int[][] prev, int min) {
+//         pm(grid);
+//         System.out.println("New matrix");
+//         set2(grid, prev);
+//         if (isequal(grid, prev)) {
+//             return min;
+//         } else {
+//             for (int i = 0; i < grid.length; i++) {
+//                 for (int j = 0; j < grid[0].length; j++) {
+//                     prev[i][j] = grid[i][j];
+//                 }
+//             }
+//             return helper(grid, prev, min + 1);
+//         }
+//         // return min;
+//     }
+
+//     public void set2(int[][] a, int[][] prev) {
+//         for (int i = 0; i < a.length; i++) {
+//             for (int j = 0; j < a[0].length; j++) {
+//                 if (a[i][j] == 2) {
+//                     if (prev[i][j] != 1) {
+//                         if (i - 1 >= 0 && a[i - 1][j] == 1)
+//                             a[i - 1][j] = 2;
+//                         if (i + 1 < a.length && a[i + 1][j] == 1)
+//                             a[i + 1][j] = 2;
+//                         if (j - 1 >= 0 && a[i][j - 1] == 1)
+//                             a[i][j - 1] = 2;
+//                         if (j + 1 < a[0].length && a[i][j + 1] == 1)
+//                             a[i][j + 1] = 2;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     public boolean contains2(int[][] a) {
+//         for (int i = 0; i < a.length; i++) {
+//             for (int j = 0; j < a[0].length; j++) {
+//                 if (a[i][j] == 2)
+//                     return true;
+//                 ;
+//             }
+//         }
+//         return false;
+//     }
+
+//     public boolean all0(int[][] a) {
+//         for (int i = 0; i < a.length; i++) {
+//             for (int j = 0; j < a[0].length; j++) {
+//                 if (a[i][j] != 0)
+//                     return false;
+//             }
+//         }
+//         return true;
+//     }
+
+//     public boolean isequal(int[][] a, int[][] b) {
+//         for (int i = 0; i < a.length; i++) {
+//             for (int j = 0; j < a[0].length; j++) {
+//                 if (a[i][j] != b[i][j])
+//                     return false;
+//             }
+//         }
+//         return true;
+//     }
+
+//     public boolean all4zero(int[][] a) {
+//         boolean up = false;
+//         boolean down = false;
+//         boolean left = false;
+//         boolean right = false;
+//         for (int i = 0; i < a.length; i++) {
+//             for (int j = 0; j < a[0].length; j++) {
+//                 if (a[i][j] == 1) {
+//                     if (i - 1 >= 0 && a[i - 1][j] == 0)
+//                         up = true;
+//                     else if (i - 1 < 0)
+//                         up = true;
+//                     if (i + 1 < a.length && a[i + 1][j] == 0)
+//                         down = true;
+//                     else if (i + 1 >= a.length)
+//                         down = true;
+//                     if (j - 1 >= 0 && a[i][j - 1] == 0)
+//                         left = true;
+//                     else if (j - 1 < 0)
+//                         left = true;
+//                     if (j + 1 < a[0].length && a[i][j + 1] == 0)
+//                         right = true;
+//                     else if (j + 1 >= a[0].length)
+//                         right = true;
+//                     if (up && down && left && right)
+//                         return true;
+//                     else {
+//                         up = false;
+//                         down = false;
+//                         left = false;
+//                         right = false;
+//                     }
+//                 }
+//             }
+//         }
+//         return false;
+//     }
+
+//     public void pm(int[][] a) {
+//         for (int i = 0; i < a.length; i++) {
+//             for (int j = 0; j < a[0].length; j++) {
+//                 System.out.print(a[i][j] + " ");
+//             }
+//             System.out.println();
+//         }
+//     }
+// }
+
 class Solution {
     public int orangesRotting(int[][] grid) {
         if (all4zero(grid))
@@ -62,10 +197,12 @@ class Solution {
     }
 
     public int helper(int[][] grid, int[][] prev, int min) {
-        pm(grid);
-        System.out.println("New matrix");
+        // pm(grid);
+        // System.out.println("New matrix");
         set2(grid, prev);
         if (isequal(grid, prev)) {
+            if (contains1(grid))
+                return -1;
             return min;
         } else {
             for (int i = 0; i < grid.length; i++) {
@@ -75,7 +212,6 @@ class Solution {
             }
             return helper(grid, prev, min + 1);
         }
-        // return min;
     }
 
     public void set2(int[][] a, int[][] prev) {
@@ -102,7 +238,16 @@ class Solution {
             for (int j = 0; j < a[0].length; j++) {
                 if (a[i][j] == 2)
                     return true;
-                ;
+            }
+        }
+        return false;
+    }
+
+    public boolean contains1(int[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[0].length; j++) {
+                if (a[i][j] == 1)
+                    return true;
             }
         }
         return false;
@@ -174,4 +319,5 @@ class Solution {
             System.out.println();
         }
     }
+
 }
