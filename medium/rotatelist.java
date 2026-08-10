@@ -33,6 +33,49 @@
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+// class Solution {
+// public class ListNode {
+// int val;
+// ListNode next;
+
+// ListNode() {
+// }
+
+// ListNode(int val) {
+// this.val = val;
+// }
+
+// ListNode(int val, ListNode next) {
+// this.val = val;
+// this.next = next;
+// }
+// }
+
+// public ListNode rotateRight(ListNode head, int k) {
+// if (head == null || head.next == null)
+// return head;
+// ListNode newhead = helper(head, k);
+// return newhead;
+// }
+
+// public ListNode helper(ListNode head, int k) {
+// while (k != 0) {
+// ListNode oldhead = head;
+// ListNode prev = null;
+// while (head.next != null) {
+// if (head.next.next == null) {
+// prev = head;
+// }
+// head = head.next;
+// }
+// prev.next = null;
+// head.next = oldhead;
+// k--;
+// }
+// return head;
+// }
+// }
+
 class Solution {
     public class ListNode {
         int val;
@@ -52,26 +95,38 @@ class Solution {
     }
 
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null)
-            return head;
-        ListNode newhead = helper(head, k);
-        return newhead;
-    }
 
-    public ListNode helper(ListNode head, int k) {
-        while (k != 0) {
-            ListNode oldhead = head;
-            ListNode prev = null;
-            while (head.next != null) {
-                if (head.next.next == null) {
-                    prev = head;
+        if (head == null || head.next == null || k == 0)
+            return head;
+
+        int size = getsize(head);
+        // int nodes = k > size ? (int) Math.abs((size - k) / size) : size - k;
+        int nodes = k % size;
+
+        while (nodes != 0) {
+            ListNode temp = head;
+            ListNode prev = head;
+            while (temp.next != null) {
+                if (temp.next.next == null) {
+                    prev = temp;
                 }
-                head = head.next;
+                temp = temp.next;
             }
             prev.next = null;
-            head.next = oldhead;
-            k--;
+            temp.next = head;
+            head = temp;
+            nodes--;
         }
         return head;
+    }
+
+    private int getsize(ListNode head) {
+        ListNode temp = head;
+        int size = 0;
+        while (temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        return size;
     }
 }
