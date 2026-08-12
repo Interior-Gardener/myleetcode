@@ -9,10 +9,7 @@
 
 // Return the head of the flattened list. The nodes in the list must have all of their child pointers set to null.
 
- 
-
 // Example 1:
-
 
 // Input: head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
 // Output: [1,2,3,7,8,11,12,9,10,4,5,6]
@@ -20,7 +17,6 @@
 // After flattening the multilevel linked list it becomes:
 
 // Example 2:
-
 
 // Input: head = [1,2,null,3]
 // Output: [1,3,2]
@@ -32,13 +28,11 @@
 // Input: head = []
 // Output: []
 // Explanation: There could be empty list in the input.
- 
 
 // Constraints:
 
 // The number of Nodes will not exceed 1000.
 // 1 <= Node.val <= 105
- 
 
 // How the multilevel linked list is represented in test cases:
 
@@ -75,7 +69,70 @@ class Node {
 };
 */
 
+// class Solution {
+//     public Node flatten(Node head) {
+//         if (head == null)
+//             return null;
+//         Node garbage = helper(head);
+//         // pl(head);
+//         return head;
+//     }
+
+//     public Node helper(Node head) {
+//         Node curr = head;
+//         while (curr.next != null) {
+//             if (curr.child != null) {
+//                 Node temp = null;
+//                 Node tempcurr = curr;
+//                 Node next = tempcurr.next;
+//                 tempcurr.next = tempcurr.child;
+//                 tempcurr.child = null;
+//                 tempcurr.next.prev = tempcurr;
+//                 temp = helper(tempcurr.next);
+//                 temp.next = next;
+//                 if (next != null)
+//                     next.prev = temp;
+//                 curr = temp;
+//             }
+//             curr = curr.next;
+//         }
+//         return curr;
+//     }
+
+//     public void pl(Node head){
+//         Node curr  = head;
+//         while(curr.next!=null){
+//             System.out.print(curr.val + " ");
+//             curr = curr.next;
+//         }
+//         System.out.print(curr.val + " ");
+//         System.out.println("reverse");
+//         while(curr != head) {
+//             System.out.print(curr.val + " ");
+//             curr = curr.prev;
+//         }
+//         System.out.print(curr.val + " ");
+//     }
+// }
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node prev;
+    public Node next;
+    public Node child;
+};
+*/
+
 class Solution {
+    class Node {
+        public int val;
+        public Node prev;
+        public Node next;
+        public Node child;
+    };
+
     public Node flatten(Node head) {
         if (head == null)
             return null;
@@ -102,18 +159,26 @@ class Solution {
             }
             curr = curr.next;
         }
+        if (curr.child != null) {
+            Node tempcurr = curr;
+            tempcurr.next = tempcurr.child;
+            tempcurr.child = null;
+            tempcurr.next.prev = tempcurr;
+            Node temp = helper(tempcurr.next);
+            return temp;
+        }
         return curr;
     }
 
-    public void pl(Node head){
-        Node curr  = head;
-        while(curr.next!=null){
+    public void pl(Node head) {
+        Node curr = head;
+        while (curr.next != null) {
             System.out.print(curr.val + " ");
             curr = curr.next;
         }
         System.out.print(curr.val + " ");
         System.out.println("reverse");
-        while(curr != head) {
+        while (curr != head) {
             System.out.print(curr.val + " ");
             curr = curr.prev;
         }
