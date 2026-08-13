@@ -1,5 +1,4 @@
 // 274. H-Index
-// Solved
 // Medium
 // Topics
 // premium lock icon
@@ -29,18 +28,38 @@
 // 1 <= n <= 5000
 // 0 <= citations[i] <= 1000
 
+import java.util.Arrays;
 class Solution {
     public int hIndex(int[] citations) {
         int n = citations.length;
         Arrays.sort(citations);
-        return helper(citations,n);
-    }
-    public int helper(int[] citations, int n) {
-        int count = 0;
-        for(int i : citations) {
-            if(i >= n) count++;
+        int i = 0 , j = n;
+        while(i<n) {
+            if(citations[i] >= j) {
+                return j;
+            }
+            else{
+                i++;
+                j--;
+            }
         }
-        if(count >= n) return n;
-        else return helper(citations, n-1);
+            return 0;
     }
+    // public int helper(int[] citations, int n) {
+    //     int count = 0;
+    //     for(int i = citations.length - n ; i< citations.length ;i++) {
+    //         if(citations[i] >= n) count++;
+    //         else break;
+    //     }
+    //     if(count >= n) return n;
+    //     else return helper(citations, n-1);
+    // }
 }
+
+// class Solution {
+//     public int hIndex(int[] citations) {
+//         int n = citations.length;
+//         Arrays.sort(citations);
+
+//     }
+// }
