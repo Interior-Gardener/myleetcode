@@ -36,6 +36,40 @@
 // 1 <= k <= nums.length
 
 
+// import java.util.*;
+// class Solution {
+//     private class Pair {
+//         int value;
+//         int index;
+//         Pair(int value, int index) {
+//             this.value = value;
+//             this.index = index;
+//         }
+//     }
+
+//     public int[] maxSlidingWindow(int[] nums, int k) {
+//         int[] arr = new int[nums.length - k + 1];
+//         PriorityQueue<Pair> heap = new PriorityQueue<>((a, b) -> b.value - a.value);
+
+//         for (int i = 0; i < k; i++) {
+//             heap.offer(new Pair(nums[i], i));
+//         }
+//         arr[0] = heap.peek().value;
+//         int index = 1;
+//         for (int i = k; i < nums.length; i++) {
+//             heap.offer(new Pair(nums[i], i));
+//             while (heap.peek().index < i - k + 1) {
+//                 heap.poll();
+//             }
+//             arr[index] = heap.peek().value;
+//             index++;
+//         }
+//         return arr;
+//     }
+// }
+
+
+
 import java.util.*;
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
