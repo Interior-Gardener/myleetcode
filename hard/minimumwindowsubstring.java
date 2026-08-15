@@ -78,3 +78,58 @@ import java.util.*;
 // }
 // Attemp 1 failed 
 
+class Solution {
+    public String minWindow(String s, String t) {
+        int m = s.length(), n = t.length();
+        if (n > m)
+            return "";
+        int[] freqt = new int[52];
+        int[] freqs = new int[52];
+        for (char c : t.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                freqt[c - 'A' + 26]++;
+            } else {
+                freqt[c - 'a']++;
+            }
+        }
+        int i = 0, j = 0;
+        int count = 0;
+        int start = 0;
+        int minLength = Integer.MAX_VALUE;
+        while (j < m) {
+            char c = s.charAt(j);
+            int index;
+            if (Character.isUpperCase(c)) {
+                index = c - 'A' + 26;
+            } else {
+                index = c - 'a';
+            }
+            freqs[index]++;
+            if (freqs[index] <= freqt[index]) {
+                count++;
+            }
+            while (count == n) {
+                if (j - i + 1 < minLength) {
+                    minLength = j - i + 1;
+                    start = i;
+                }
+                char left = s.charAt(i);
+                if (Character.isUpperCase(left)) {
+                    index = left - 'A' + 26;
+                } else {
+                    index = left - 'a';
+                }
+                freqs[index]--;
+                if (freqs[index] < freqt[index]) {
+                    count--;
+                }
+                i++;
+            }
+            j++;
+        }
+
+        if (minLength == Integer.MAX_VALUE)
+            return "";
+        return s.substring(start, start + minLength);
+    }
+}
