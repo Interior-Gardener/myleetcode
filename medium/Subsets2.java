@@ -1,10 +1,9 @@
-// Code
-// 78. Subsets
+// 90. Subsets II
 // Medium
 // Topics
 // premium lock icon
 // Companies
-// Given an integer array nums of unique elements, return all possible subsets (the power set).
+// Given an integer array nums that may contain duplicates, return all possible subsets (the power set).
 
 // The solution set must not contain duplicate subsets. Return the solution in any order.
 
@@ -12,8 +11,8 @@
 
 // Example 1:
 
-// Input: nums = [1,2,3]
-// Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+// Input: nums = [1,2,2]
+// Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
 // Example 2:
 
 // Input: nums = [0]
@@ -24,12 +23,13 @@
 
 // 1 <= nums.length <= 10
 // -10 <= nums[i] <= 10
-// All the numbers of nums are unique.
+
 import java.util.*;
 class Solution {
-    public List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         HashSet<ArrayList<Integer>> set = new HashSet<>();
+        Arrays.sort(nums);
         backtrack(nums,result,set,0,new ArrayList<>());
         return result;
     }
@@ -47,6 +47,7 @@ class Solution {
         }
 
         for(int i = index ; i < nums.length ; i++) {
+            if(i > index && nums[i] == nums[i-1]) continue;
             temp.add(nums[i]);
             index = i + 1;
             backtrack(nums,result,set,index,temp);
