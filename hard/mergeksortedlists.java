@@ -48,8 +48,52 @@
  * }
  */
 import java.util.*;
+// class Solution {
+//     public class ListNode {
+//         int val;
+//         ListNode next;
+
+//         ListNode() {
+//         }
+
+//         ListNode(int val) {
+//             this.val = val;
+//         }
+
+//         ListNode(int val, ListNode next) {
+//             this.val = val;
+//             this.next = next;
+//         }
+//     }
+
+//     public ListNode mergeKLists(ListNode[] lists) {
+//         PriorityQueue<ListNode> q = new PriorityQueue<>((a, b) -> a.val - b.val);
+//         for (ListNode i : lists) {
+//             ListNode head = i;
+//             while (head != null) {
+//                 q.add(head);
+//                 head = head.next;
+//             }
+//         }
+//         ListNode dummy = new ListNode();
+//         while (!q.isEmpty()) {
+//             addnode(dummy, q.poll());
+//         }
+//         return dummy.next;
+//     }
+
+//     public void addnode(ListNode dummy, ListNode newnode) {
+//         ListNode curr = dummy;
+//         while (curr.next != null) {
+//             curr = curr.next;
+//         }
+//         newnode.next = null;
+//         curr.next = newnode;
+//     }
+// }
+
 class Solution {
-    public class ListNode {
+        public class ListNode {
         int val;
         ListNode next;
 
@@ -65,9 +109,11 @@ class Solution {
             this.next = next;
         }
     }
-
     public ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<ListNode> q = new PriorityQueue<>((a, b) -> a.val - b.val);
+
+        PriorityQueue<ListNode> q =
+            new PriorityQueue<>((a, b) -> a.val - b.val);
+
         for (ListNode i : lists) {
             ListNode head = i;
             while (head != null) {
@@ -75,19 +121,15 @@ class Solution {
                 head = head.next;
             }
         }
+
         ListNode dummy = new ListNode();
+        ListNode lastnode = dummy;
         while (!q.isEmpty()) {
-            addnode(dummy, q.poll());
+            ListNode newnode = q.poll();
+            lastnode.next = newnode;
+            lastnode = lastnode.next;
+            lastnode.next = null;
         }
         return dummy.next;
-    }
-
-    public void addnode(ListNode dummy, ListNode newnode) {
-        ListNode curr = dummy;
-        while (curr.next != null) {
-            curr = curr.next;
-        }
-        newnode.next = null;
-        curr.next = newnode;
     }
 }
