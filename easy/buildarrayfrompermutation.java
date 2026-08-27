@@ -1,5 +1,4 @@
 // 1920. Build Array from Permutation
-// Solved
 // Easy
 // Topics
 // premium lock icon
