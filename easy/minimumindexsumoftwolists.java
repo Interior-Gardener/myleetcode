@@ -42,3 +42,29 @@
 // All the strings of list1 are unique.
 // All the strings of list2 are unique.
 // There is at least a common string between list1 and list2.
+
+import java.util.*;
+class Solution {
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        HashMap<String , Integer> map = new HashMap<>();
+        for(int i = 0 ; i < list1.length ; i++) {
+            map.put(list1[i],i);
+        }
+        int sum = Integer.MAX_VALUE;
+        ArrayList<String> res = new ArrayList<>();
+        PriorityQueue<Integer> q = new PriorityQueue<>();
+        for(int i = 0 ; i < list2.length ;i++) {
+            if(map.containsKey(list2[i])) {
+                q.add(i+map.get(list2[i]));
+            }
+        }
+        int lowest = q.peek();
+        for(int i = 0 ; i < list2.length ;i++) {
+            if(map.containsKey(list2[i]) && i+map.get(list2[i]) == lowest) {
+                res.add(list2[i]);
+            }
+        }
+        String[] arr = res.toArray(new String[0]);
+        return arr;
+    }
+}
