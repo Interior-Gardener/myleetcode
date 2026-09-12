@@ -1,5 +1,4 @@
 // 2181. Merge Nodes in Between Zeros
-// Solved
 // Medium
 // Topics
 // premium lock icon
