@@ -8,8 +8,6 @@
 
 // Given a string s, return the longest happy prefix of s. Return an empty string "" if no such prefix exists.
 
- 
-
 // Example 1:
 
 // Input: s = "level"
@@ -20,7 +18,6 @@
 // Input: s = "ababab"
 // Output: "abab"
 // Explanation: "abab" is the largest prefix which is also suffix. They can overlap in the original string.
- 
 
 // Constraints:
 
