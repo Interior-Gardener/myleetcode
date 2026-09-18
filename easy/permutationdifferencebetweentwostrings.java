@@ -43,7 +43,7 @@
 // Each character occurs at most once in s.
 // t is a permutation of s.
 // s consists only of lowercase English letters.
-
+import java.util.*;
 class Solution {
     public int findPermutationDifference(String s, String t) {
         HashMap<Character , Integer> map = new HashMap<>();
