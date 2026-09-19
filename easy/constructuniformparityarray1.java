@@ -45,3 +45,9 @@
 // 1 <= n == nums1.length <= 100
 // 1 <= nums1[i] <= 100
 // nums1 consists of distinct integers.
+
+class Solution {
+    public boolean uniformArray(int[] nums1) {
+        return true;
+    }
+}

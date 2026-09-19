@@ -83,7 +83,7 @@
 //     }
 // }
 
-
+import java.util.*;
 // littele faster cause of hashmap
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {

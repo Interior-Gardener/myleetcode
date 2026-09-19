@@ -31,3 +31,14 @@
 // Constraints:
 
 // 0 <= celsius <= 1000
+
+class Solution {
+    public double[] convertTemperature(double c) {
+        double f = c*1.80 + 32.00;
+        double k = c + 273.15;
+        double[] ans = new double[2];
+        ans[0] = k;
+        ans[1] = f;
+        return ans;
+    }
+}

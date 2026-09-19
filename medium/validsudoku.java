@@ -12,10 +12,8 @@
 
 // A Sudoku board (partially filled) could be valid but is not necessarily solvable.
 // Only the filled cells need to be validated according to the mentioned rules.
- 
 
 // Example 1:
-
 
 // Input: board = 
 // [["5","3",".",".","7",".",".",".","."]
@@ -42,10 +40,60 @@
 // ,[".",".",".",".","8",".",".","7","9"]]
 // Output: false
 // Explanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid.
- 
 
 // Constraints:
 
 // board.length == 9
 // board[i].length == 9
 // board[i][j] is a digit 1-9 or '.'.
+
+import java.util.*;
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                // System.out.print(board[i][j] + " ");
+                if (board[i][j] != '.' && isSafe(board, i, j, board[i][j])) {
+                    continue;
+                }
+                if (board[i][j] == '.')
+                    continue;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSafe(char[][] board, int row, int col, char c) {
+        for (int i = 0; i < 9; i++) {
+            if (i == col) {
+                continue;
+            }
+            if (board[row][i] == c) {
+                return false;
+            }
+        }
+        for (int i = 0; i < 9; i++) {
+            if (i == row) {
+                continue;
+            }
+            if (board[i][col] == c) {
+                return false;
+            }
+        }
+
+        int rowrange = row / 3;
+        int colrange = col / 3;
+        for (int i = rowrange * 3; i < (rowrange + 1) * 3; i++) {
+            for (int j = colrange * 3; j < (colrange + 1) * 3; j++) {
+                if (i == row && j == col)
+                    continue;
+                if (board[i][j] == c)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+}
