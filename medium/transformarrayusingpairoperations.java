@@ -58,3 +58,17 @@
 
 // 2 <= source.length == target.length <= 105
 // -109 <= source[i], target[i] <= 109
+
+class Solution {
+    public boolean canTransform(int[] src, int[] target) {
+
+        long ss = 0, st = 0;
+
+        for(int i : src)
+            ss+=i;
+        for(int i : target)
+            st+=i;
+
+        return ss == st ? true:false;
+    }
+}
