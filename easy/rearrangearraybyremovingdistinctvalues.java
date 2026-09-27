@@ -1,5 +1,4 @@
 // 4065. Rearrange Array by Removing Distinct Values
-// Solved
 // Easy
 // premium lock icon
 // Companies
@@ -47,7 +46,7 @@
 
 // 1 <= nums.length <= 100
 // 1 <= nums[i] <= 100
-
+import java.util.*;
 class Solution {
     public int[] rearrangeArray(int[] nums) {
         HashSet<Integer> set = new HashSet<>();
