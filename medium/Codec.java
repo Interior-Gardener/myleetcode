@@ -13,7 +13,6 @@
 // Solution() Initializes the object of the system.
 // String encode(String longUrl) Returns a tiny URL for the given longUrl.
 // String decode(String shortUrl) Returns the original long URL for the given shortUrl. It is guaranteed that the given shortUrl was encoded by the same object.
- 
 
 // Example 1:
 
@@ -24,7 +23,6 @@
 // Solution obj = new Solution();
 // string tiny = obj.encode(url); // returns the encoded tiny url.
 // string ans = obj.decode(tiny); // returns the original url after decoding it.
- 
 
 // Constraints:
 
@@ -32,10 +30,12 @@
 // url is guranteed to be a valid URL.
 
 import java.util.*;
+
 public class Codec {
-    HashMap<String,Integer> map = new HashMap<>();
+    HashMap<String, Integer> map = new HashMap<>();
     ArrayList<String> list = new ArrayList<>();
     int max = 0;
+
     // Encodes a URL to a shortened URL.
     public String encode(String longURL) {
         // map.put(longURL,list.size());
