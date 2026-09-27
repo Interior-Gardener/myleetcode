@@ -11,7 +11,6 @@
 // The format of a path is one or more concatenated strings of the form: '/' followed by one or more lowercase English letters.
 
 // For example, "/leetcode" and "/leetcode/problems" are valid paths while an empty string and "/" are not.
- 
 
 // Example 1:
 
@@ -27,7 +26,6 @@
 
 // Input: folder = ["/a/b/c","/a/b/ca","/a/b/d"]
 // Output: ["/a/b/c","/a/b/ca","/a/b/d"]
- 
 
 // Constraints:
 
@@ -38,6 +36,7 @@
 // Each folder name is unique.
 
 import java.util.*;
+
 class Solution {
     class TrieNode {
         TrieNode[] children;
