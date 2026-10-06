@@ -1,8 +1,3 @@
-
-// Code
-// Testcase
-// Testcase
-// Test Result
 // 121. Best Time to Buy and Sell Stock
 // Easy
 // Topics
@@ -34,7 +29,7 @@
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
 
-class Solution {
+// class Solution {
     // public int maxProfit(int[] prices) {
     //     int profit = 0;
     //     int i = 0 , j = prices.length-1;
@@ -53,18 +48,33 @@ class Solution {
     //     return profit;
     // }
 
-    public int maxProfit(int[] prices) {
-        int maxprofit = 0 ;
-        int minval = Integer.MAX_VALUE;
+//     public int maxProfit(int[] prices) {
+//         int maxprofit = 0 ;
+//         int minval = Integer.MAX_VALUE;
         
-        for(int i = 0 ; i < prices.length ; i++) {
-            if(prices[i] <= minval) minval = prices[i];;
+//         for(int i = 0 ; i < prices.length ; i++) {
+//             if(prices[i] <= minval) minval = prices[i];;
 
-            if(prices[i] - minval > maxprofit) maxprofit = prices[i] - minval;
+//             if(prices[i] - minval > maxprofit) maxprofit = prices[i] - minval;
 
-            if(prices[i] > minval) continue;
+//             if(prices[i] > minval) continue;
 
+//         }
+//         return maxprofit;
+//     }
+// }
+
+// new Try 
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int min = prices[0];
+        int profit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            int cost = prices[i] - min;
+            profit = Math.max(profit, cost);
+            min = Math.min(min, prices[i]);
         }
-        return maxprofit;
+        return profit;
     }
 }
