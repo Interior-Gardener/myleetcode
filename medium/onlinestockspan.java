@@ -1,5 +1,4 @@
 // 901. Online Stock Span
-// Solved
 // Medium
 // Topics
 // premium lock icon

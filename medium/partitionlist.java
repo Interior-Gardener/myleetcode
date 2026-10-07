@@ -1,4 +1,3 @@
-// Code
 // 86. Partition List
 // Medium
 // Topics

@@ -1,5 +1,4 @@
 // 2410. Maximum Matching of Players With Trainers
-// Solved
 // Medium
 // Topics
 // premium lock icon

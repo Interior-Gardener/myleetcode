@@ -1,4 +1,3 @@
-// Code
 // 4034. Minimum Bishop Moves to Reach Target
 // Medium
 // premium lock icon

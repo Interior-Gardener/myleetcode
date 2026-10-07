@@ -1,5 +1,4 @@
 // 2161. Partition Array According to Given Pivot
-// Solved
 // Medium
 // Topics
 // premium lock icon

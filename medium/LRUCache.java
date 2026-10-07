@@ -1,5 +1,4 @@
 // 146. LRU Cache
-// Solved
 // Medium
 // Topics
 // premium lock icon

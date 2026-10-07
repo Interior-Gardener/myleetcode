@@ -1,12 +1,4 @@
-
-// Code
-// Accepted
-// Accepted
-// Testcase
-// Testcase
-// Test Result
 // 50. Pow(x, n)
-// Solved
 // Medium
 // Topics
 // premium lock icon
