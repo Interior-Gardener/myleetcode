@@ -33,6 +33,7 @@
 // n == image[i].length
 // 1 <= n <= 20
 // images[i][j] is either 0 or 1.
+
 class Solution {
     public int[][] flipAndInvertImage(int[][] image) {
         int n = image.length;
