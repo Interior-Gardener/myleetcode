@@ -35,3 +35,14 @@
 
 // It is very easy to come up with a solution with a runtime of O(n log n). Can you do it in linear time O(n) and possibly in a single pass?
 
+class Solution {
+    public int[] countBits(int n) {
+        int[] ans = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            ans[i] = ans[i >> 1] + (i & 1);
+        }
+
+        return ans;
+    }
+}
