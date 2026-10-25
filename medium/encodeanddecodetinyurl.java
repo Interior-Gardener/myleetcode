@@ -31,7 +31,7 @@
 
 import java.util.*;
 
-public class Codec {
+public class Solution {
     HashMap<String, Integer> map = new HashMap<>();
     ArrayList<String> list = new ArrayList<>();
     int max = 0;
