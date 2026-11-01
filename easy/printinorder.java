@@ -35,7 +35,7 @@
 
 // nums is a permutation of [1, 2, 3].
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.*;
 class Foo {
     CountDownLatch firstDone = new CountDownLatch(1);
     CountDownLatch secondDone = new CountDownLatch(1);
