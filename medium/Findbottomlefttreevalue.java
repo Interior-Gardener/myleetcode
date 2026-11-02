@@ -1,5 +1,4 @@
 // 513. Find Bottom Left Tree Value
-// Solved
 // Medium
 // Topics
 // premium lock icon
