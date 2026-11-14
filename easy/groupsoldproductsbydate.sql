@@ -1,5 +1,4 @@
 -- 1484. Group Sold Products By The Date
--- Solved
 -- Easy
 -- Topics
 -- premium lock icon
